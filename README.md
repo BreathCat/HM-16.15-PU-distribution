@@ -1,2 +1,2 @@
 # With__draw_HEVC
-提取HEVC特征的代码
+the C++ code to hide information, based on Xie
