@@ -89,65 +89,65 @@ int main(int argc, char* argv[])
   string matchPath=cTAppDecTop.m_bitstreamFileName;
   
 
-  string matchpath1="txt_file/I_PUNum/";
+  string matchpath1="I_PUNum/";
   matchpath1.append(matchPath);
   matchpath1.append("_I_PUNum.txt");
   const char* MatchPath1 = matchpath1.data();
   ofstream ofa(MatchPath1);
 
-  string matchpath2="txt_file/P_PUNum/";    //C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/P_PUNum/"
+  string matchpath2="P_PUNum/";    //C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/P_PUNum/"
   matchpath2.append(matchPath);
   matchpath2.append("_P_PUNum.txt");
   const char* MatchPath2 = matchpath2.data();
   ofstream ofb(MatchPath2);
 
-  string matchpath3="txt_file/I_CUNum/";     //"E:/I_CUNum/";
-  matchpath3.append(matchPath);  
-  matchpath3.append("_I_CUNum.txt");
-  const char* MatchPath3 = matchpath3.data();
-  ofstream ofc(MatchPath3);
+  //string matchpath3="txt_file/I_CUNum/";     //"E:/I_CUNum/";
+  //matchpath3.append(matchPath);  
+  //matchpath3.append("_I_CUNum.txt");
+  //const char* MatchPath3 = matchpath3.data();
+  //ofstream ofc(MatchPath3);
 
-  string matchpath4="txt_file/P_CUNum/"; //  "E:/P_CUNum/";
-  matchpath4.append(matchPath);
-  matchpath4.append("_P_CUNum.txt");
-  const char* MatchPath4 = matchpath4.data();
-  ofstream ofd(MatchPath4);
+  //string matchpath4="txt_file/P_CUNum/"; //  "E:/P_CUNum/";
+  //matchpath4.append(matchPath);
+  //matchpath4.append("_P_CUNum.txt");
+  //const char* MatchPath4 = matchpath4.data();
+  //ofstream ofd(MatchPath4);
 
-  //只取第一个P帧
-  string matchpath5="txt_file/first_P_PUNum/";        // "E:/first_P_PUNum/";
-  matchpath5.append(matchPath);
-  matchpath5.append("_first_P_PUNum.txt");
-  const char* MatchPath5 = matchpath5.data();
-  ofstream ofe(MatchPath5);
+  ////只取第一个P帧
+  //string matchpath5="txt_file/first_P_PUNum/";        // "E:/first_P_PUNum/";
+  //matchpath5.append(matchPath);
+  //matchpath5.append("_first_P_PUNum.txt");
+  //const char* MatchPath5 = matchpath5.data();
+  //ofstream ofe(MatchPath5);
 
-  string matchpath6="txt_file/first_P_CUNum/";   //"E:/first_P_CUNum/";
-  matchpath6.append(matchPath);
-  matchpath6.append("_first_P_CUNum.txt");
-  const char* MatchPath6 = matchpath6.data();
-  ofstream off(MatchPath6);
+  //string matchpath6="txt_file/first_P_CUNum/";   //"E:/first_P_CUNum/";
+  //matchpath6.append(matchPath);
+  //matchpath6.append("_first_P_CUNum.txt");
+  //const char* MatchPath6 = matchpath6.data();
+  //ofstream off(MatchPath6);
 
-  string matchpath7=matchPath;
-  matchpath7.append(".txt");
-  const char* MatchPath7 = matchpath7.data();
-  ofstream ofg(MatchPath7);
+  //string matchpath7=matchPath;
+  //matchpath7.append(".txt");
+  //const char* MatchPath7 = matchpath7.data();
+  //ofstream ofg(MatchPath7);
 
-  string matchpath8="txt_file/intra/";  //"E:/intra/";
-  matchpath8.append(matchPath);
-  matchpath8.append("_intra.txt");
-  const char* MatchPath8 = matchpath8.data();
-  ofstream ofh(MatchPath8);
+  //string matchpath8="txt_file/intra/";  //"E:/intra/";
+  //matchpath8.append(matchPath);
+  //matchpath8.append("_intra.txt");
+  //const char* MatchPath8 = matchpath8.data();
+  //ofstream ofh(MatchPath8);
 
-  string matchpath9="txt_file/inter/";  //"E:/inter/";
-  matchpath9.append(matchPath);
-  matchpath9.append("_inter.txt");
-  const char* MatchPath9 = matchpath9.data();
-  ofstream ofi(MatchPath9);
+  //string matchpath9="txt_file/inter/";  //"E:/inter/";
+  //matchpath9.append(matchPath);
+  //matchpath9.append("_inter.txt");
+  //const char* MatchPath9 = matchpath9.data();
+  //ofstream ofi(MatchPath9);
 
-  string matchpath10="txt_file/skip/";  //"E:/skip/";
-  matchpath10.append(matchPath);
-  matchpath10.append("_skip.txt");
-  const char* MatchPath10 = matchpath10.data();
-  ofstream ofj(MatchPath10);
+  //string matchpath10="txt_file/skip/";  //"E:/skip/";
+  //matchpath10.append(matchPath);
+  //matchpath10.append("_skip.txt");
+  //const char* MatchPath10 = matchpath10.data();
+  //ofstream ofj(MatchPath10);
   //////////////////////////////
 
 
@@ -156,7 +156,7 @@ int main(int argc, char* argv[])
   cTAppDecTop.decode();
   
   /////////////////////////
-  for(int liang=0;liang<80;liang++)
+  for(int liang=0;liang<150;liang++)
   {
 	  if((liang%4)==0)
 	  {
@@ -169,61 +169,61 @@ int main(int argc, char* argv[])
 		  // cout<<endl;
 		  ofa<<endl;
 
-		  for(int xiao=0;xiao<4;xiao++)
-		  {
-			  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofc<<I_CU_number[liang][xiao]<<"  ";
-		  }
-		  // cout<<endl;
-		  ofc<<endl;
-		  ///////////֡��Ԥ��ģʽ
-		//cout<<"num_frame:"<<liang<<endl;
-		  for(int xiao=0;xiao<35;xiao++)
-		  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofg<<intra_pre_mode[liang][xiao]<<"  ";
-		  }
-			  // cout<<endl;
-		  ofg<<endl;
+		//  for(int xiao=0;xiao<4;xiao++)
+		//  {
+		//	  // cout<<intra_pre_mode[liang][xiao]<<"  ";
+		//	  ofc<<I_CU_number[liang][xiao]<<"  ";
+		//  }
+		//  // cout<<endl;
+		//  ofc<<endl;
+		//  ///////////֡��Ԥ��ģʽ
+		////cout<<"num_frame:"<<liang<<endl;
+		//  for(int xiao=0;xiao<35;xiao++)
+		//  {
+		//		  // cout<<intra_pre_mode[liang][xiao]<<"  ";
+		//	  ofg<<intra_pre_mode[liang][xiao]<<"  ";
+		//  }
+		//	  // cout<<endl;
+		//  ofg<<endl;
 	  }
 	  else
 	  {
-		  if((liang%4)==1)
-		  {
-			  for(int xiao=0;xiao<25;xiao++)
-			  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-				  ofe<<P_PU_number[liang][xiao]<<"  ";
-				  //ofb<<P_PU_number[liang][xiao]<<"  ";
-			  }
-			  ofe<<endl;
-			  //ofb<<endl;
-			  for(int xiao=0;xiao<4;xiao++)
-			  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-				  off<<P_CU_number[liang][xiao]<<"  ";
-				  //ofd<<P_CU_number[liang][xiao]<<"  ";
-			  }
-			  off<<endl;
-			  //ofd<<endl;
-		  }
+		  //if((liang%4)==1)
+		  //{
+			 // for(int xiao=0;xiao<25;xiao++)
+			 // {
+				//  // cout<<intra_pre_mode[liang][xiao]<<"  ";
+				//  ofe<<P_PU_number[liang][xiao]<<"  ";
+				//  //ofb<<P_PU_number[liang][xiao]<<"  ";
+			 // }
+			 // ofe<<endl;
+			 // //ofb<<endl;
+			 // for(int xiao=0;xiao<4;xiao++)
+			 // {
+				//  // cout<<intra_pre_mode[liang][xiao]<<"  ";
+				//  off<<P_CU_number[liang][xiao]<<"  ";
+				//  //ofd<<P_CU_number[liang][xiao]<<"  ";
+			 // }
+			 // off<<endl;
+			 // //ofd<<endl;
+		  //}
 
 		  for(int xiao=0;xiao<25;xiao++)
 		  {
 			  ofb<<P_PU_number[liang][xiao]<<"  ";
 		  }
 		  ofb<<endl;
-		  for(int xiao=0;xiao<4;xiao++)
-		  {
-			  ofd<<P_CU_number[liang][xiao]<<"  ";
-		  }
-		  ofd<<endl;
+		  //for(int xiao=0;xiao<4;xiao++)
+		  //{
+			 // ofd<<P_CU_number[liang][xiao]<<"  ";
+		  //}
+		  //ofd<<endl;
 
 	  }
 
-	  ofh<<intra[liang]<<endl;
+	 /* ofh<<intra[liang]<<endl;
 	  ofi<<inter[liang]<<endl;
-	  ofj<<skip[liang]<<endl;
+	  ofj<<skip[liang]<<endl;*/
 	  
   }
 

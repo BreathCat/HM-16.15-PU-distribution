@@ -726,25 +726,25 @@ Void TComPrediction::xPredInterBlk(const ComponentID compID, TComDataCU *cu, TCo
 	if(width==4&&height==4)
 	{
 		P_PU_number[intra_pre_mode_index][0]++;
-	//	if (intra_pre_mode_index)
+		if (intra_pre_mode_index)
 		cout<<"3 ";
 	}
 	if(width==8&&height==8)
 	{
 		P_PU_number[intra_pre_mode_index][1]++;
-	//	if (intra_pre_mode_index)
+		if (intra_pre_mode_index)
 		cout<<"0 ";
 	}
 	if(width==8&&height==4)
 	{
 		P_PU_number[intra_pre_mode_index][2]++;
-	//	if (intra_pre_mode_index)
+		if (intra_pre_mode_index)
 		cout<<"1 ";
 	}
 	if(width==4&&height==8)
 	{
 		P_PU_number[intra_pre_mode_index][3]++;
-	//	if (intra_pre_mode_index)
+		if (intra_pre_mode_index)
 		cout<<"2 ";
 	}
 	if(width==16&&height==16)
