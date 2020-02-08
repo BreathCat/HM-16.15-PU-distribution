@@ -156,75 +156,81 @@ int main(int argc, char* argv[])
   cTAppDecTop.decode();
   
   /////////////////////////
-  for(int liang=0;liang<80;liang++)
+  for(int Frame_main=0;Frame_main<80;Frame_main++)
   {
-	  if((liang%4)==0)
+	  if((Frame_main%4)==0)
 	  {
-		  //cout<<"num_frame:"<<liang<<endl;
-		  for(int xiao=0;xiao<5;xiao++)
+		  //cout<<"num_frame:"<<Frame_main<<endl;
+		  for(int PU_mode_main=0;PU_mode_main<5;PU_mode_main++)
 		  {
-			  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofa<<I_PU_number[liang][xiao]<<"  ";
+			  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+			  ofa<<I_PU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  // cout<<endl;
 		  ofa<<endl;
 
-		  for(int xiao=0;xiao<4;xiao++)
+		  for(int PU_mode_main=0;PU_mode_main<4;PU_mode_main++)
 		  {
-			  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofc<<I_CU_number[liang][xiao]<<"  ";
+			  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+			  ofc<<I_CU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  // cout<<endl;
 		  ofc<<endl;
 		  ///////////֡��Ԥ��ģʽ
-		//cout<<"num_frame:"<<liang<<endl;
-		  for(int xiao=0;xiao<35;xiao++)
+		//cout<<"num_frame:"<<Frame_main<<endl;
+		  for(int PU_mode_main=0;PU_mode_main<35;PU_mode_main++)
 		  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofg<<intra_pre_mode[liang][xiao]<<"  ";
+				  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+			  ofg<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
 		  }
 			  // cout<<endl;
 		  ofg<<endl;
 	  }
 	  else
 	  {
-		  if((liang%4)==1)
+		  if((Frame_main%4)==1)
 		  {
-			  for(int xiao=0;xiao<25;xiao++)
+			  for(int PU_mode_main=0;PU_mode_main<25;PU_mode_main++)
 			  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-				  ofe<<P_PU_number[liang][xiao]<<"  ";
-				  //ofb<<P_PU_number[liang][xiao]<<"  ";
+				  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+				  ofe<<P_PU_number[Frame_main][PU_mode_main]<<"  ";
+				  //ofb<<P_PU_number[Frame_main][PU_mode_main]<<"  ";
 			  }
 			  ofe<<endl;
 			  //ofb<<endl;
-			  for(int xiao=0;xiao<4;xiao++)
+			  for(int PU_mode_main=0;PU_mode_main<4;PU_mode_main++)
 			  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-				  off<<P_CU_number[liang][xiao]<<"  ";
-				  //ofd<<P_CU_number[liang][xiao]<<"  ";
+				  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+				  off<<P_CU_number[Frame_main][PU_mode_main]<<"  ";
+				  //ofd<<P_CU_number[Frame_main][PU_mode_main]<<"  ";
 			  }
 			  off<<endl;
 			  //ofd<<endl;
 		  }
 
-		  for(int xiao=0;xiao<25;xiao++)
+		  for(int PU_mode_main=0;PU_mode_main<25;PU_mode_main++)
 		  {
-			  ofb<<P_PU_number[liang][xiao]<<"  ";
+			  ofb<<P_PU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  ofb<<endl;
-		  for(int xiao=0;xiao<4;xiao++)
+		  for(int PU_mode_main=0;PU_mode_main<4;PU_mode_main++)
 		  {
-			  ofd<<P_CU_number[liang][xiao]<<"  ";
+			  ofd<<P_CU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  ofd<<endl;
 
 	  }
 
+<<<<<<< HEAD
 	  ofh<<intra[liang]<<endl;
 	  ofi<<inter[liang]<<endl;
 	  ofj<<skip[liang]<<endl;
 	  
+=======
+	  ofh<<intra[Frame_main]<<endl;
+	  ofi<<inter[Frame_main]<<endl;
+	  ofj<<skip[Frame_main]<<endl;
+>>>>>>> 476312bb69c4570d3cbb0047267f2e9e14213763
   }
 
   ///////////////////////
