@@ -9,3 +9,7 @@ long P_CU_number[100][4]={0};//自己定义的P帧CU划分统计
  long intra[100]={0};//intra 的PU数目
  long inter[100]={0};//inter 的PU数目
  long skip[100]={0};//skip 的PU数目
+ int MessStr[100] = {0};//原始隐秘信息
+int ThNum[100] = {0};//三进制数
+int m = 0;//三进制数数组下标
+int TotalNum = 0; //数组长度

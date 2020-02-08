@@ -87,40 +87,39 @@ int main(int argc, char* argv[])
 
   ////////////////////////////
   string matchPath=cTAppDecTop.m_bitstreamFileName;
-  
 
-  string matchpath1="txt_file/I_PUNum/";
+  string matchpath1="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/I_PUNum/";
   matchpath1.append(matchPath);
   matchpath1.append("_I_PUNum.txt");
   const char* MatchPath1 = matchpath1.data();
   ofstream ofa(MatchPath1);
 
-  string matchpath2="txt_file/P_PUNum/";    //C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/P_PUNum/"
+  string matchpath2="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/";    //C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/P_PUNum/"
   matchpath2.append(matchPath);
   matchpath2.append("_P_PUNum.txt");
   const char* MatchPath2 = matchpath2.data();
   ofstream ofb(MatchPath2);
 
-  string matchpath3="txt_file/I_CUNum/";     //"E:/I_CUNum/";
+  string matchpath3="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/I_CUNum/";     //"E:/I_CUNum/";
   matchpath3.append(matchPath);  
   matchpath3.append("_I_CUNum.txt");
   const char* MatchPath3 = matchpath3.data();
   ofstream ofc(MatchPath3);
 
-  string matchpath4="txt_file/P_CUNum/"; //  "E:/P_CUNum/";
+  string matchpath4="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/P_CUNum/"; //  "E:/P_CUNum/";
   matchpath4.append(matchPath);
   matchpath4.append("_P_CUNum.txt");
   const char* MatchPath4 = matchpath4.data();
   ofstream ofd(MatchPath4);
 
   //只取第一个P帧
-  string matchpath5="txt_file/first_P_PUNum/";        // "E:/first_P_PUNum/";
+  string matchpath5="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/first_P_PUNum/";        // "E:/first_P_PUNum/";
   matchpath5.append(matchPath);
   matchpath5.append("_first_P_PUNum.txt");
   const char* MatchPath5 = matchpath5.data();
   ofstream ofe(MatchPath5);
 
-  string matchpath6="txt_file/first_P_CUNum/";   //"E:/first_P_CUNum/";
+  string matchpath6="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/first_P_CUNum/";   //"E:/first_P_CUNum/";
   matchpath6.append(matchPath);
   matchpath6.append("_first_P_CUNum.txt");
   const char* MatchPath6 = matchpath6.data();
@@ -131,19 +130,19 @@ int main(int argc, char* argv[])
   const char* MatchPath7 = matchpath7.data();
   ofstream ofg(MatchPath7);
 
-  string matchpath8="txt_file/intra/";  //"E:/intra/";
+  string matchpath8="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/intra/";  //"E:/intra/";
   matchpath8.append(matchPath);
   matchpath8.append("_intra.txt");
   const char* MatchPath8 = matchpath8.data();
   ofstream ofh(MatchPath8);
 
-  string matchpath9="txt_file/inter/";  //"E:/inter/";
+  string matchpath9="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/inter/";  //"E:/inter/";
   matchpath9.append(matchPath);
   matchpath9.append("_inter.txt");
   const char* MatchPath9 = matchpath9.data();
   ofstream ofi(MatchPath9);
 
-  string matchpath10="txt_file/skip/";  //"E:/skip/";
+  string matchpath10="C:/Users/45452/OneDrive - bjtu.edu.cn/HEVC/txt_file/skip/";  //"E:/skip/";
   matchpath10.append(matchPath);
   matchpath10.append("_skip.txt");
   const char* MatchPath10 = matchpath10.data();
@@ -152,79 +151,76 @@ int main(int argc, char* argv[])
 
 
   // call decoding function
- 
   cTAppDecTop.decode();
-  
   /////////////////////////
-  for(int liang=0;liang<80;liang++)
+  for(int Frame_main=0;Frame_main<80;Frame_main++)
   {
-	  if((liang%4)==0)
+	  if((Frame_main%4)==0)
 	  {
-		  //cout<<"num_frame:"<<liang<<endl;
-		  for(int xiao=0;xiao<5;xiao++)
+		  //cout<<"num_frame:"<<Frame_main<<endl;
+		  for(int PU_mode_main=0;PU_mode_main<5;PU_mode_main++)
 		  {
-			  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofa<<I_PU_number[liang][xiao]<<"  ";
+			  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+			  ofa<<I_PU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  // cout<<endl;
 		  ofa<<endl;
 
-		  for(int xiao=0;xiao<4;xiao++)
+		  for(int PU_mode_main=0;PU_mode_main<4;PU_mode_main++)
 		  {
-			  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofc<<I_CU_number[liang][xiao]<<"  ";
+			  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+			  ofc<<I_CU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  // cout<<endl;
 		  ofc<<endl;
-		  ///////////֡��Ԥ��ģʽ
-		//cout<<"num_frame:"<<liang<<endl;
-		  for(int xiao=0;xiao<35;xiao++)
+		 
+		//cout<<"num_frame:"<<Frame_main<<endl;
+		  for(int PU_mode_main=0;PU_mode_main<35;PU_mode_main++)
 		  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-			  ofg<<intra_pre_mode[liang][xiao]<<"  ";
+				  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+			  ofg<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
 		  }
 			  // cout<<endl;
 		  ofg<<endl;
 	  }
 	  else
 	  {
-		  if((liang%4)==1)
+		  if((Frame_main%4)==1)
 		  {
-			  for(int xiao=0;xiao<25;xiao++)
+			  for(int PU_mode_main=0;PU_mode_main<25;PU_mode_main++)
 			  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-				  ofe<<P_PU_number[liang][xiao]<<"  ";
-				  //ofb<<P_PU_number[liang][xiao]<<"  ";
+				  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+				  ofe<<P_PU_number[Frame_main][PU_mode_main]<<"  ";
+				  //ofb<<P_PU_number[Frame_main][PU_mode_main]<<"  ";
 			  }
 			  ofe<<endl;
 			  //ofb<<endl;
-			  for(int xiao=0;xiao<4;xiao++)
+			  for(int PU_mode_main=0;PU_mode_main<4;PU_mode_main++)
 			  {
-				  // cout<<intra_pre_mode[liang][xiao]<<"  ";
-				  off<<P_CU_number[liang][xiao]<<"  ";
-				  //ofd<<P_CU_number[liang][xiao]<<"  ";
+				  // cout<<intra_pre_mode[Frame_main][PU_mode_main]<<"  ";
+				  off<<P_CU_number[Frame_main][PU_mode_main]<<"  ";
+				  //ofd<<P_CU_number[Frame_main][PU_mode_main]<<"  ";
 			  }
 			  off<<endl;
 			  //ofd<<endl;
 		  }
 
-		  for(int xiao=0;xiao<25;xiao++)
+		  for(int PU_mode_main=0;PU_mode_main<25;PU_mode_main++)
 		  {
-			  ofb<<P_PU_number[liang][xiao]<<"  ";
+			  ofb<<P_PU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  ofb<<endl;
-		  for(int xiao=0;xiao<4;xiao++)
+		  for(int PU_mode_main=0;PU_mode_main<4;PU_mode_main++)
 		  {
-			  ofd<<P_CU_number[liang][xiao]<<"  ";
+			  ofd<<P_CU_number[Frame_main][PU_mode_main]<<"  ";
 		  }
 		  ofd<<endl;
 
 	  }
 
-	  ofh<<intra[liang]<<endl;
-	  ofi<<inter[liang]<<endl;
-	  ofj<<skip[liang]<<endl;
-	  
+	  ofh<<intra[Frame_main]<<endl;
+	  ofi<<inter[Frame_main]<<endl;
+	  ofj<<skip[Frame_main]<<endl;
   }
 
   ///////////////////////
@@ -237,13 +233,11 @@ int main(int argc, char* argv[])
   // ending time
   dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
   printf("\n Total Time: %12.3f sec.\n", dResult);
- 
+
   // destroy application decoder class
-  
   cTAppDecTop.destroy();
-  
+
   return returnCode;
-  
 }
 
 //! \}

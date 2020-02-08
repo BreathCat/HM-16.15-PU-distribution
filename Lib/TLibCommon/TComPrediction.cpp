@@ -39,7 +39,10 @@
 #include "TComPrediction.h"
 #include "TComPic.h"
 #include "TComTU.h"
-#include "C:\Users\45452\OneDrive - bjtu.edu.cn\HEVC\attack\HM-16.15-YUN\source\App\TAppDecoder\def.h"
+
+//C:\Users\45452\OneDrive\科研\HEVC_提取PU\HM-16.15-YUN\source\Lib\TLibCommon\TComPic.h
+//#include "C:\Users\45452\OneDrive\科研\HEVC_提取PU\HM-16.15-YUN\source\App\TAppDecoder\def.h"
+#include "..\..\App\TAppDecoder\def.h"
 //! \ingroup TLibCommon
 //! \{
 
@@ -674,23 +677,75 @@ Void TComPrediction::xPredInterBlk(const ComponentID compID, TComDataCU *cu, TCo
 	64*16----------------23
 	16*64----------------24
 	*/
-	if(width<height)
+
+	
+	//if(width<height); //????李中浩2020 2.5
+
+
+	if (m<30&&0){//if (m<TotalNum|| m<5){
+
+		if(width==4&&height==4)
+		{
+			ThNum[m]=3;//ThNum[m]=0;
+			m++;
+		}
+		if(width==8&&height==8)
+		{
+			ThNum[m]=4;//ThNum[m]=0;
+			m++;
+		}
+		if(width==8&&height==4)
+		{
+			ThNum[m]=1;
+			m++;
+		}
+		if(width==4&&height==8)
+		{
+			ThNum[m]=2;
+			m++;
+		}
+
+		if(m==4)
+			TotalNum = (81*ThNum[0] + 27*ThNum[1] + 9*ThNum[2] + 3*ThNum[3] + ThNum[4]+1)*5;//1是前5个指示长度的三进制数
+
+		
+		if(m==30){//if(m=TotalNum){
+			printf("\n The ThNum[%d] and %d = is",TotalNum,m);
+
+			for(int i =0;i<m;i++){
+				cout << ThNum[i];
+				if (i%5==4){
+					cout<<" ";
+				}
+			}
+		
+		}
+
+	}//思路:只关注第一个P帧的8*8，数量应该够了。接下来确定顺序没问题，再提取
+
 	if(width==4&&height==4)
 	{
 		P_PU_number[intra_pre_mode_index][0]++;
-
+	//	if (intra_pre_mode_index)
+		cout<<"3 ";
 	}
 	if(width==8&&height==8)
 	{
 		P_PU_number[intra_pre_mode_index][1]++;
+	//	if (intra_pre_mode_index)
+		cout<<"0 ";
 	}
 	if(width==8&&height==4)
 	{
 		P_PU_number[intra_pre_mode_index][2]++;
+	//	if (intra_pre_mode_index)
+		cout<<"1 ";
 	}
 	if(width==4&&height==8)
 	{
 		P_PU_number[intra_pre_mode_index][3]++;
+	//	if (intra_pre_mode_index)
+		cout<<"2 ";
 	}
 	if(width==16&&height==16)
 	{

@@ -38,7 +38,8 @@
 #include "TDecCu.h"
 #include "TLibCommon/TComTU.h"
 #include "TLibCommon/TComPrediction.h"
-#include "C:\Users\45452\OneDrive - bjtu.edu.cn\HEVC\attack\HM-16.15-YUN\source\App\TAppDecoder\def.h"
+#include "..\..\App\TAppDecoder\def.h"
+//#include "C:\Users\45452\OneDrive\科研\HEVC_提取PU\HM-16.15-YUN\source\App\TAppDecoder\def.h"
 
 //! \ingroup TLibDecoder
 //! \{
