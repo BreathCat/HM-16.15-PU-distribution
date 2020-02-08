@@ -5,13 +5,11 @@ extern int intra_pre_mode_index;//自己定义的：第几帧数
 extern long intra_pre_mode[100][35] ;//自己定义的帧内预测模式的统计数组
 extern long I_PU_number[100][5];//自己定义的帧内PU划分统计 4*4------------0;8*8------------1;16*16------------2;32*32------------3;64*64------------4;
 extern long P_PU_number[100][25];//自己定义的帧间PU划分统计 
-<<<<<<< HEAD
 extern int MessStr[100] ;//原始隐秘信息
 extern int ThNum[100] ;//三进制数
 extern int m ;//三进制数数组下标
 extern int TotalNum ;
-=======
->>>>>>> 476312bb69c4570d3cbb0047267f2e9e14213763
+
 //4*4----------------0
 	//8*8----------------1
 	//8*4----------------2
