@@ -36,6 +36,7 @@
 */
 
 #include <stdlib.h>
+
 #include <stdio.h>
 #include <time.h>
 #include "TAppDecTop.h"
@@ -223,7 +224,7 @@ int main(int argc, char* argv[])
 
 	 /* ofh<<intra[liang]<<endl;
 	  ofi<<inter[liang]<<endl;
-	  ofj<<skip[liang]<<endl;*/
+	  ofj<<skip[liang]<<endl;*/////
 	  
   }
 
