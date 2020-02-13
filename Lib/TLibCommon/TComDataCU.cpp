@@ -129,7 +129,7 @@ Void TComDataCU::create( ChromaFormat chromaFormatIDC, UInt uiNumPartition, UInt
     m_ChromaQpAdj        = new UChar[ uiNumPartition ];
     m_skipFlag           = new Bool[ uiNumPartition ];
     m_pePartSize         = new SChar[ uiNumPartition ];
-    memset( m_pePartSize, NUMBER_OF_PART_SIZES,uiNumPartition * sizeof( *m_pePartSize ) );
+    memset( m_pePartSize, NUMBER_OF_PART_SIZES,uiNumPartition * sizeof( *m_pePartSize ) );//lzh这里初始化划分数组
     m_pePredMode         = new SChar[ uiNumPartition ];
     m_CUTransquantBypass = new Bool[ uiNumPartition ];
 
@@ -531,7 +531,7 @@ Void TComDataCU::initEstData( const UInt uiDepth, const Int qp, const Bool bTran
 
   const UChar uhWidth  = getSlice()->getSPS()->getMaxCUWidth()  >> uiDepth;
   const UChar uhHeight = getSlice()->getSPS()->getMaxCUHeight() >> uiDepth;
-
+ 
   for (UInt ui = 0; ui < m_uiNumPartition; ui++)
   {
     for(UInt i=0; i<NUM_REF_PIC_LIST_01; i++)
@@ -551,7 +551,7 @@ Void TComDataCU::initEstData( const UInt uiDepth, const Int qp, const Bool bTran
       m_explicitRdpcmMode            [comp][ui] = NUMBER_OF_RDPCM_MODES;
     }
     m_skipFlag[ui]      = false;
-    m_pePartSize[ui]    = NUMBER_OF_PART_SIZES;
+    m_pePartSize[ui]    = NUMBER_OF_PART_SIZES;//lzh 这里好像是赋值pePartSize的地方,但不知道为什么不跑这一段
     m_pePredMode[ui]    = NUMBER_OF_PREDICTION_MODES;
     m_CUTransquantBypass[ui] = bTransquantBypass;
     m_pbIPCMFlag[ui]    = 0;
@@ -571,6 +571,7 @@ Void TComDataCU::initEstData( const UInt uiDepth, const Int qp, const Bool bTran
       m_puhCbf[comp][ui] = 0;
     }
   }
+   cout<<" m_uiNumPartition is "<<m_uiNumPartition<<endl;
 
   for(UInt i=0; i<NUM_REF_PIC_LIST_01; i++)
   {

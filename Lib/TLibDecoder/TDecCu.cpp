@@ -151,12 +151,13 @@ Void TDecCu::decodeCtu( TComDataCU* pCtu, Bool& isLastCtuOfSliceSegment )
 }
 
 /** 
- Decoding process for a CTU.
+ Decoding process for a CTU. lzh
  \param    pCtu                      [in/out] pointer to CTU data structure
  */
 Void TDecCu::decompressCtu( TComDataCU* pCtu )
 {
-  xDecompressCU( pCtu, 0,  0 );
+  xDecompressCU( pCtu, 0,  0 );//这里是每次压缩CTU，包括非64*64的CTU
+  cout<<"\n一个CTU经过\n";
 }
 
 // ====================================================================================================================
@@ -417,6 +418,15 @@ Void TDecCu::xDecompressCU( TComDataCU* pCtu, UInt uiAbsPartIdx,  UInt uiDepth )
   /////////////////////////////
   UInt CuWidth = m_ppcCU[uiDepth] ->getWidth ( 0 );
   UInt CuHeight = m_ppcCU[uiDepth] ->getHeight ( 0 );
+
+  if(pCtu->m_pcSlice->m_eSliceType ==P_SLICE){
+	UInt PUpartSize = m_ppcCU[uiDepth] ->getPartitionSize(0);
+  cout<<"\nPUparSize is "<< PUpartSize;
+  if(CuWidth==8&&CuHeight==8) cout<<" CU is 8*8 ";
+   if(CuWidth==16&&CuHeight==16) cout<<" CU is 16*16 ";
+    if(CuWidth==32&&CuHeight==32) cout<<" CU is 32*32 ";
+	 if(CuWidth==64&&CuHeight==64) cout<<" CU is 64*64 "; //lzh修改成功，就是这里。再排除非正常sizeCTU即可。
+  }
   if(CuWidth==8&&CuHeight==8)
   {
 	  if(pCtu->m_pcSlice->m_eSliceType ==I_SLICE)

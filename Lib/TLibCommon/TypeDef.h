@@ -333,8 +333,8 @@ enum DeblockEdgeDir
   NUM_EDGE_DIR = 2
 };
 
-/// supported partition shape
-enum PartSize
+/// supported partition shape lzh重磅，获得划分模式
+enum PartSize 
 {
   SIZE_2Nx2N           = 0,           ///< symmetric motion partition,  2Nx2N
   SIZE_2NxN            = 1,           ///< symmetric motion partition,  2Nx N

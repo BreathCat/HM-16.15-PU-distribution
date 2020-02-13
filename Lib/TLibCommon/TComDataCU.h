@@ -60,7 +60,7 @@ static const UInt NUM_MOST_PROBABLE_MODES=3;
 // Class definition
 // ====================================================================================================================
 
-/// CU data structure class
+/// CU data structure class lzh
 class TComDataCU
 {
 public:
@@ -214,10 +214,10 @@ public:
   Void          setDepthSubParts              ( UInt uiDepth, UInt uiAbsPartIdx );
 
   // -------------------------------------------------------------------------------------------------------------------
-  // member functions for CU data
+  // member functions for CU data lzh用getPartitionSize获得划分模式函数，具体可查看PartSize类型
   // -------------------------------------------------------------------------------------------------------------------
 
-  SChar*        getPartitionSize              ( )                                                          { return m_pePartSize;                       }
+  SChar*        getPartitionSize              ( )                                                       { return m_pePartSize;                       }
   PartSize      getPartitionSize              ( UInt uiIdx ) const                                         { return static_cast<PartSize>( m_pePartSize[uiIdx] ); }
   Void          setPartitionSize              ( UInt uiIdx, PartSize uh )                                  { m_pePartSize[uiIdx] = uh;                  }
   Void          setPartSizeSubParts           ( PartSize eMode, UInt uiAbsPartIdx, UInt uiDepth );
