@@ -151,7 +151,6 @@ int main(int argc, char* argv[])
   //ofstream ofj(MatchPath10);
   //////////////////////////////
 
-
   // call decoding function
  
   cTAppDecTop.decode();
@@ -236,12 +235,30 @@ int main(int argc, char* argv[])
   }
 
   // ending time
+  
   dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
   printf("\n Total Time: %12.3f sec.\n", dResult);
  
+  m=5;
+  for (int i = 1;i<=(TotalNum/5-1);i++){
+	  MessStr[i] = (char)(ThNum[m+1]*81+ThNum[m+2]*27+ThNum[m+3]*9+ThNum[m+4]*3+ThNum[m+5]);
+	  m+=5;
+  }
+
+   ofstream outfile;
+   outfile.open("Message.txt",ios::out);
+  for (int i =(TotalNum/5-1);i>=1;i--){
+	 cout<< MessStr[i];
+	 outfile << MessStr[i] ;
+  }
+  outfile.close();
+  
+
   // destroy application decoder class
   
   cTAppDecTop.destroy();
+ 
+ 
   
   return returnCode;
   

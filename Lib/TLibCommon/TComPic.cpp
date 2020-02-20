@@ -76,7 +76,7 @@ Void TComPic::create( const TComSPS &sps, const TComPPS &pps, const Bool bIsVirt
   destroy();
 
   const ChromaFormat chromaFormatIDC = sps.getChromaFormatIdc();
-  const Int          iWidth          = sps.getPicWidthInLumaSamples();
+  const Int          iWidth          = sps.getPicWidthInLumaSamples();//好像看到宽度了lzh
   const Int          iHeight         = sps.getPicHeightInLumaSamples();
   const UInt         uiMaxCuWidth    = sps.getMaxCUWidth();
   const UInt         uiMaxCuHeight   = sps.getMaxCUHeight();

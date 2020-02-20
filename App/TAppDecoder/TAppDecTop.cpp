@@ -40,7 +40,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <assert.h>
-
+#include"def.h"
 #include "TAppDecTop.h"
 #include "TLibDecoder/AnnexBread.h"
 #include "TLibDecoder/NALread.h"
@@ -840,6 +840,8 @@ Void TAppDecTop::applyColourRemapping(const TComPicYuv& pic, SEIColourRemappingI
   if( !criSEI.m_colourRemapCancelFlag && pic.getChromaFormat()!=CHROMA_400) // 4:0:0 not supported.
   {
     const Int          iHeight         = pic.getHeight(COMPONENT_Y);
+	
+	
     const Int          iWidth          = pic.getWidth(COMPONENT_Y);
     const ChromaFormat chromaFormatIDC = pic.getChromaFormat();
 

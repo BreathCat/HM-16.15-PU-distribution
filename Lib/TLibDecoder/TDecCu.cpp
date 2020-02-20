@@ -345,6 +345,8 @@ Void TDecCu::xFinishDecodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth,
 
 Void TDecCu::xDecompressCU( TComDataCU* pCtu, UInt uiAbsPartIdx,  UInt uiDepth )
 {
+	
+
   TComPic* pcPic = pCtu->getPic();
   TComSlice * pcSlice = pCtu->getSlice();
   const TComSPS &sps=*(pcSlice->getSPS());
@@ -358,7 +360,9 @@ Void TDecCu::xDecompressCU( TComDataCU* pCtu, UInt uiAbsPartIdx,  UInt uiDepth )
   if( ( uiRPelX >= sps.getPicWidthInLumaSamples() ) || ( uiBPelY >= sps.getPicHeightInLumaSamples() ) )
   {
     bBoundary = true;
+	
   }
+  //cout<<"bBoundary is "<< bBoundary<<endl;
 
   if( ( ( uiDepth < pCtu->getDepth( uiAbsPartIdx ) ) && ( uiDepth < sps.getLog2DiffMaxMinCodingBlockSize() ) ) || bBoundary )
   {
@@ -419,14 +423,69 @@ Void TDecCu::xDecompressCU( TComDataCU* pCtu, UInt uiAbsPartIdx,  UInt uiDepth )
   UInt CuWidth = m_ppcCU[uiDepth] ->getWidth ( 0 );
   UInt CuHeight = m_ppcCU[uiDepth] ->getHeight ( 0 );
 
+  ////以下lzh提取每个CU的PU划分模式成功
+  int CTUaddress = pCtu->getCtuRsAddr(); //当前CTU的S-scan序号
+  int YuW,YuH,ShangW,ShangH;//根据分辨率除以64的商和余数计算边界CTU的Z-scan序号。
+  ShangH = FrameHeight/64;
+  YuH = FrameHeight%64;
+  ShangW = FrameWidth/64;
+  YuW = FrameWidth%64;
+ 
   if(pCtu->m_pcSlice->m_eSliceType ==P_SLICE){
-	UInt PUpartSize = m_ppcCU[uiDepth] ->getPartitionSize(0);
-  cout<<"\nPUparSize is "<< PUpartSize;
-  if(CuWidth==8&&CuHeight==8) cout<<" CU is 8*8 ";
-   if(CuWidth==16&&CuHeight==16) cout<<" CU is 16*16 ";
-    if(CuWidth==32&&CuHeight==32) cout<<" CU is 32*32 ";
-	 if(CuWidth==64&&CuHeight==64) cout<<" CU is 64*64 "; //lzh修改成功，就是这里。再排除非正常sizeCTU即可。
+	  UInt PUpartSize = m_ppcCU[uiDepth] ->getPartitionSize(0);//CU的PU划分模式
+	  if(YuH==0&&YuW==0){
+		  if(CuWidth==8&&CuHeight==8&&m<=TotalNum) {
+			  //  if(PUpartSize==0) cout<<"PU is  8*8"<<endl;if(PUpartSize==1) cout<<"PU is  8*4"<<endl;if(PUpartSize==2) cout<<"PU is  4*8"<<endl;if(PUpartSize==3) cout<<"PU is  4*4"<<endl;
+			  if(PUpartSize==0) ThNum[m++]=0;//cout<<"PU is  8*8"<<endl;
+			  if(PUpartSize==1) ThNum[m++]=1;//cout<<"PU is  8*4"<<endl;
+			  if(PUpartSize==2) ThNum[m++]=2;//cout<<"PU is  4*8"<<endl;
+			  if(PUpartSize==3) ThNum[m++]=0;//cout<<"PU is  4*4"<<endl;
+			  if(m==6) TotalNum = (ThNum[1]*81+ThNum[2]*27+ThNum[3]*9+ThNum[4]*3+ThNum[5]+1)*5;
+		  } 
+	  }
+	  else if(YuH!=0&&YuW!=0){
+		  if((CTUaddress+1)%(ShangW+1)==0||(CTUaddress+1)>(ShangW+1)*ShangH){ 1;}//CTU为边界
+		  else{
+			  if(CuWidth==8&&CuHeight==8&&m<=TotalNum) {
+				  //  if(PUpartSize==0) cout<<"PU is  8*8"<<endl;if(PUpartSize==1) cout<<"PU is  8*4"<<endl;if(PUpartSize==2) cout<<"PU is  4*8"<<endl;if(PUpartSize==3) cout<<"PU is  4*4"<<endl;
+				  if(PUpartSize==0) ThNum[m++]=0;//cout<<"PU is  8*8"<<endl;
+				  if(PUpartSize==1) ThNum[m++]=1;//cout<<"PU is  8*4"<<endl;
+				  if(PUpartSize==2) ThNum[m++]=2;//cout<<"PU is  4*8"<<endl;
+				  if(PUpartSize==3) ThNum[m++]=0;//cout<<"PU is  4*4"<<endl;
+				  if(m==6) TotalNum = (ThNum[1]*81+ThNum[2]*27+ThNum[3]*9+ThNum[4]*3+ThNum[5]+1)*5;
+
+			  } 	  
+		  }
+	  }
+	  else if(YuH==0&&YuW!=0){
+		  if((CTUaddress+1)%(ShangW+1)==0){ 1;}//CTU为边界
+		  else{
+			  if(CuWidth==8&&CuHeight==8&&m<=TotalNum) {
+				  //  if(PUpartSize==0) cout<<"PU is  8*8"<<endl;if(PUpartSize==1) cout<<"PU is  8*4"<<endl;if(PUpartSize==2) cout<<"PU is  4*8"<<endl;if(PUpartSize==3) cout<<"PU is  4*4"<<endl;
+				  if(PUpartSize==0) ThNum[m++]=0;//cout<<"PU is  8*8"<<endl;
+				  if(PUpartSize==1) ThNum[m++]=1;//cout<<"PU is  8*4"<<endl;
+				  if(PUpartSize==2) ThNum[m++]=2;//cout<<"PU is  4*8"<<endl;
+				  if(PUpartSize==3) ThNum[m++]=0;//cout<<"PU is  4*4"<<endl;
+				  if(m==6) TotalNum = (ThNum[1]*81+ThNum[2]*27+ThNum[3]*9+ThNum[4]*3+ThNum[5]+1)*5;
+			  } 
+		  }
+	  }
+	  else if(YuH!=0&&YuW==0){
+		  if((CTUaddress+1)>(ShangW+1)*ShangH){ 1;}//CTU为边界
+		  else{
+			  if(CuWidth==8&&CuHeight==8&&m<=TotalNum) {
+				  //  if(PUpartSize==0) cout<<"PU is  8*8"<<endl;if(PUpartSize==1) cout<<"PU is  8*4"<<endl;if(PUpartSize==2) cout<<"PU is  4*8"<<endl;if(PUpartSize==3) cout<<"PU is  4*4"<<endl;
+				  if(PUpartSize==0) ThNum[m++]=0;//cout<<"PU is  8*8"<<endl;
+				  if(PUpartSize==1) ThNum[m++]=1;//cout<<"PU is  8*4"<<endl;
+				  if(PUpartSize==2) ThNum[m++]=2;//cout<<"PU is  4*8"<<endl;
+				  if(PUpartSize==3) ThNum[m++]=0;//cout<<"PU is  4*4"<<endl;
+				  if(m==6) TotalNum = (ThNum[1]*81+ThNum[2]*27+ThNum[3]*9+ThNum[4]*3+ThNum[5]+1)*5;
+			  } 
+		  }
+	  }
   }
+
+
   if(CuWidth==8&&CuHeight==8)
   {
 	  if(pCtu->m_pcSlice->m_eSliceType ==I_SLICE)

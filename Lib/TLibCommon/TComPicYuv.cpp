@@ -38,7 +38,7 @@
 #include <cstdlib>
 #include <assert.h>
 #include <memory.h>
-
+#include"..\..\App\TAppDecoder\def.h"
 #ifdef __APPLE__
 #include <malloc/malloc.h>
 #else
@@ -90,6 +90,8 @@ Void TComPicYuv::createWithoutCUInfo ( const Int picWidth,                 ///< 
 
   m_picWidth          = picWidth;
   m_picHeight         = picHeight;
+  FrameWidth = picWidth;
+  FrameHeight = picHeight;//lzh获取帧高度
   m_chromaFormatIDC   = chromaFormatIDC;
   m_marginX          = (bUseMargin?maxCUWidth:0) + 16;   // for 16-byte alignment
   m_marginY          = (bUseMargin?maxCUHeight:0) + 16;  // margin for 8-tap filter and infinite padding
@@ -204,6 +206,7 @@ Void  TComPicYuv::copyToPic (TComPicYuv*  pcPicYuvDst) const
     const ComponentID compId=ComponentID(comp);
     const Int width     = getWidth(compId);
     const Int height    = getHeight(compId);
+	
     const Int strideSrc = getStride(compId);
     assert(pcPicYuvDst->getWidth(compId) == width);
     assert(pcPicYuvDst->getHeight(compId) == height);
